@@ -1,0 +1,15 @@
+import 'package:dp_perfum/controllers/base_controller.dart';
+import 'package:dp_perfum/models/general/general_report_model.dart';
+import 'package:dp_perfum/services/report_service.dart';
+
+class GeneralReportController extends BaseController {
+  GeneralReportModel? report;
+
+  getReport() async {
+    setProgress();
+    await ReportService().getGeneralReport()
+        .then((value) => report = value)
+        .whenComplete(() => stopProgress())
+        .catchError(showException);
+  }
+}
