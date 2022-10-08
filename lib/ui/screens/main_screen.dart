@@ -1,5 +1,6 @@
 import 'package:dp_perfum/ui/screens/cash_report_screen.dart';
 import 'package:dp_perfum/ui/screens/general_report_screen.dart';
+import 'package:dp_perfum/ui/screens/selling_report_screen.dart';
 import 'package:dp_perfum/ui/widgets/app_scaffold.dart';
 import 'package:dp_perfum/ui/widgets/report_button.dart';
 import 'package:flutter/material.dart';
@@ -19,7 +20,7 @@ class MainScreen extends StatelessWidget {
           children: [
             ReportButton(text: 'Ümumi hesabat', icon: Ionicons.bar_chart_outline, onTap: () => Get.to(() => GeneralReportScreen())),
             ReportButton(text: 'Kassa hesabatı', icon: Ionicons.wallet_outline, onTap: () => Get.to(() => CashReportScreen())),
-            ReportButton(text: 'Satış hesabatı', icon: Ionicons.arrow_up_outline, onTap: (){}),
+            ReportButton(text: 'Satış hesabatı', icon: Ionicons.arrow_up_outline, onTap: () => Get.to(() => SellingReportScreen())),
             ReportButton(text: 'Kontragent hesabatı', icon: Ionicons.people_outline, onTap: (){}),
             ReportButton(text: 'Qalıq hesabatı', icon: Ionicons.pie_chart_outline, onTap: (){}),
           ]));

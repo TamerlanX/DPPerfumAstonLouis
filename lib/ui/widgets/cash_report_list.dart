@@ -22,7 +22,7 @@ class _CashReportListState extends State<CashReportList> {
   final PagingController<int, CashReportItem> _pagingController = PagingController(firstPageKey: 1);
 
   _getNextPage(int page) async {
-    await Future.delayed(const Duration(seconds: 1));
+    await Future.delayed(const Duration(milliseconds: 200));
     await ReportService().getCashReport(startDate: widget.controller.startDate, endDate: widget.controller.endDate, page: page).then((newItems) {
       final isLastPage = newItems.length < _pageSize;
       if (isLastPage) {

@@ -1,10 +1,8 @@
-import 'package:dp_perfum/models/cash_report_item.dart';
 import 'package:dp_perfum/ui/report_ui_controller.dart';
 import 'package:dp_perfum/ui/widgets/app_scaffold.dart';
 import 'package:dp_perfum/ui/widgets/cash_report_list.dart';
 import 'package:dp_perfum/ui/widgets/date_range.dart';
 import 'package:flutter/material.dart';
-import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
 
 class CashReportScreen extends StatelessWidget {
 
