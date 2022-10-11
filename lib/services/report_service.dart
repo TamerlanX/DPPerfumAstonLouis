@@ -1,4 +1,5 @@
 import 'package:dp_perfum/models/cash_report_item.dart';
+import 'package:dp_perfum/models/contragent_report.dart';
 import 'package:dp_perfum/models/general/general_report_model.dart';
 import 'package:dp_perfum/models/remainder_report.dart';
 import 'package:dp_perfum/models/selling_report.dart';
@@ -27,5 +28,11 @@ class ReportService extends BaseHttpService {
     final params = { 'startDate': startDate.toDateString(), 'endDate': endDate.toDateString(), 'page': page.toString() };
     final json = await get('reminder_report', params: params);
     return (json as List<dynamic>).map((e) => RemainderReport.fromJson(e)).toList();
+  }
+
+  Future<List<ContragentReport>> getContragentReport({ required DateTime startDate, required DateTime endDate, int page = 1 }) async {
+    final params = { 'startDate': startDate.toDateString(), 'endDate': endDate.toDateString(), 'page': page.toString() };
+    final json = await get('customer_report', params: params);
+    return (json as List<dynamic>).map((e) => ContragentReport.fromJson(e)).toList();
   }
 }
