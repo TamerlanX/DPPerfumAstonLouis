@@ -1,8 +1,10 @@
-import 'package:dp_perfum/models/sellling_report.dart';
+import 'package:dp_perfum/models/selling_report.dart';
 import 'package:dp_perfum/services/report_service.dart';
 import 'package:dp_perfum/ui/core/ui_values.dart';
 import 'package:dp_perfum/ui/report_ui_controller.dart';
+import 'package:dp_perfum/ui/widgets/group_caption.dart';
 import 'package:dp_perfum/ui/widgets/report_label.dart';
+import 'package:dp_perfum/ui/widgets/vertical_data_label.dart';
 import 'package:flutter/material.dart';
 import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
 
@@ -17,8 +19,7 @@ class SellingReportList extends StatefulWidget {
 
 class _SellingReportListState extends State<SellingReportList> {
 
-  static const _pageSize = 20;
-
+  static const _pageSize = 5;
   final PagingController<int, SellingReport> _pagingController = PagingController(firstPageKey: 1);
 
   _getNextPage(int page) async {
@@ -36,37 +37,10 @@ class _SellingReportListState extends State<SellingReportList> {
     });
   }
 
-  Widget _getDataLine(String label, String value) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.center,
-      children: [
-        Text(label, style: const TextStyle(
-            fontSize: 13,
-            color: AppColors.colorHintOnWhite
-        )),
-        const SizedBox(height: 5),
-        Text(value, style: const TextStyle(
-            color: Colors.black,
-            fontWeight: FontWeight.bold
-        ))
-      ],
-    );
-  }
-
   Widget _getBranch(SellingReport report) {
     
     List<Widget> items = [
-      Container(
-        padding: const EdgeInsets.symmetric(vertical: 6),
-        decoration: const BoxDecoration(
-          color: AppColors.appBlue,
-          borderRadius: BorderRadius.only(
-            topLeft: Radius.circular(10),
-            topRight: Radius.circular(10)
-          )
-        ),
-          child: Text(report.branchName, textAlign: TextAlign.center,
-              style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold, color: Colors.white))),
+      GroupCaption(text: report.branchName),
       const SizedBox(height: 10)
     ];
     
@@ -89,9 +63,9 @@ class _SellingReportListState extends State<SellingReportList> {
               const SizedBox(height: 5),
               Row(
                 children: [
-                  Expanded(child: _getDataLine('Miqdar', item.quantity.toStringAsFixed(2))),
-                  Expanded(child: _getDataLine('Dövriyyə', item.cashFlow.toStringAsFixed(2))),
-                  Expanded(child: _getDataLine('Mənfəət', item.profit.toStringAsFixed(2)))
+                  Expanded(child: VerticalDataLabel(label: 'Miqdar', value: item.quantity.toStringAsFixed(2))),
+                  Expanded(child: VerticalDataLabel(label: 'Dövriyyə', value: item.cashFlow.toStringAsFixed(2))),
+                  Expanded(child: VerticalDataLabel(label: 'Mənfəət', value: item.profit.toStringAsFixed(2)))
                 ],
               )
             ],

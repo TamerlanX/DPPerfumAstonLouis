@@ -53,8 +53,8 @@ class _DateRangeState extends State<DateRange> with UiHelper {
       const maxRange = 60;
       final range = date.difference(index == 0 ? _endDate! : _startDate!).inDays.abs();
       if (range >  maxRange + 1) {
-        showErrorSnack('Maks 60 günlük interval seçilə bilər');
-        return;
+        //showErrorSnack('Maks 60 günlük interval seçilə bilər');
+        //return;
       }
     }
 

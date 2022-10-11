@@ -71,7 +71,7 @@ class GeneralReportScreen extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.stretch,
         mainAxisSize: MainAxisSize.min,
         children: _controller.report!.remainderReport.items.map((e) => ReportLabel(
-            title: e.warehouse,
+            title: e.itemName,
             values: {
               'Miqdar': e.quantity.toStringAsFixed(2),
               'Maya': e.cost.toStringAsFixed(2),

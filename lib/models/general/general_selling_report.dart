@@ -1,4 +1,4 @@
-import 'package:dp_perfum/models/sellling_report.dart';
+import 'package:dp_perfum/models/selling_report.dart';
 
 class GeneralSellingReport {
   late double totalQuantity;
