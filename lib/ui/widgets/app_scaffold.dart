@@ -49,7 +49,9 @@ class AppScaffold extends StatelessWidget {
                 ),
               Expanded(child: Text(title, style: const TextStyle(fontSize: 25, color: Colors.white))),
               if (actionButton != null)
-                actionButton!
+                actionButton!,
+              if (actionButton != null)
+                const SizedBox(width: 10)
             ],
           ),
           if (subTitle != null) Padding(

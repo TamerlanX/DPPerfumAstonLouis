@@ -26,10 +26,10 @@ class AppColors
   static const Color colorInfo = Color(0xFF16A3B8);
   static const Color colorHintOnWhite = Color(0xFF78849E);
 
-  static const Color appBlue = Color(0xFF0A4B79);
-  static const Color appBlueLight = Color(0xFF3E90CA);
+  static const Color appBlue = Color(0xFF29394C);
+  static const Color appBlueLight = Color(0xFF29394C);
 
-  static const MaterialColor appBlueMaterial = MaterialColor(0xFF0A4B79, {
+  static const MaterialColor appBlueMaterial = MaterialColor(0xFF29394C, {
     50: appBlue,
     100: appBlue,
     200: appBlue,

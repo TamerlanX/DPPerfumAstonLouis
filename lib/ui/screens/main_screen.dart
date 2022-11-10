@@ -1,8 +1,11 @@
+import 'package:dp_perfum/infrastructure/local_settings.dart';
+import 'package:dp_perfum/ui/dialogs/confirmation_dialog.dart';
 import 'package:dp_perfum/ui/screens/cash_report_screen.dart';
 import 'package:dp_perfum/ui/screens/contragent_report_screen.dart';
 import 'package:dp_perfum/ui/screens/general_report_screen.dart';
 import 'package:dp_perfum/ui/screens/remainder_report_screen.dart';
 import 'package:dp_perfum/ui/screens/selling_report_screen.dart';
+import 'package:dp_perfum/ui/screens/splash_screen.dart';
 import 'package:dp_perfum/ui/widgets/app_scaffold.dart';
 import 'package:dp_perfum/ui/widgets/report_button.dart';
 import 'package:flutter/material.dart';
@@ -12,11 +15,22 @@ import 'package:ionicons/ionicons.dart';
 class MainScreen extends StatelessWidget {
   const MainScreen({Key? key}) : super(key: key);
 
+  void _logout() async {
+      var res = await ConfirmationDialog(message: 'Sistemdən çıxmaq istədiyinizdən əminsiniz?', title: 'Xəbərdarlıq').showDialog();
+      if (res != DialogResult.yes) return;
+
+      final ss = await LocalSettings.getSettings();
+      ss.clearSettings();
+      SplashScreen.clearState();
+      Get.offAll(() => const SplashScreen());
+  }
+
   @override
   Widget build(BuildContext context) {
     return AppScaffold(
       title: 'DP Perfum',
       showBack: false,
+      actionButton: IconButton(icon: const Icon(Icons.logout), padding: EdgeInsets.zero, constraints: const BoxConstraints(), color: Colors.white, onPressed: _logout),
       body: GridView.count(
           crossAxisCount: 2,
           children: [
