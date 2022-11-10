@@ -7,6 +7,7 @@ import '../../models/contragent_report.dart';
 import '../../services/report_service.dart';
 import '../core/ui_values.dart';
 import 'group_caption.dart';
+import 'retry_data_indicator.dart';
 
 class ContragentReportList extends StatefulWidget {
 
@@ -112,7 +113,8 @@ class _ContragentReportListState extends State<ContragentReportList> {
       padding: EdgeInsets.zero,
       pagingController: _pagingController,
       builderDelegate: PagedChildBuilderDelegate<ContragentReport>(
-        itemBuilder: (context, item, index) => _getBranch(item),
+          itemBuilder: (context, item, index) => _getBranch(item),
+          firstPageErrorIndicatorBuilder: (c) => RetryDataIndicator(_pagingController)
       ),
     );
   }

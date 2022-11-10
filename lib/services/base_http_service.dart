@@ -3,6 +3,7 @@ import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert' as convert;
 import '../utils/string_utils.dart';
+import 'account_service.dart';
 import 'http_error.dart';
 
 class AppHttpOverrides extends HttpOverrides{
@@ -50,13 +51,13 @@ class BaseHttpService {
   static Map<String, String> getHeaders([Map<String, String>? headers]) {
 
     var map = {
-      'Accept-Language': 'az',
       'Content-Type': 'application/json'
     };
 
-    final token = '';// AccountService.loginInfo?.token;
+    final token = AccountService.loginInfo?.token;
     if(!StringUtils.isEmpty(token)) {
-      map.putIfAbsent('Authorization', () => 'Bearer $token');
+      print('Header set! $token');
+      map['Authorization'] = token!.trim();
     }
 
     if(headers != null) {
@@ -65,6 +66,7 @@ class BaseHttpService {
       });
     }
 
+    print(map);
     return map;
   }
 

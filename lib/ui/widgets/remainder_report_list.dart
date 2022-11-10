@@ -7,6 +7,7 @@ import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
 import '../../services/report_service.dart';
 import '../report_ui_controller.dart';
 import 'group_caption.dart';
+import 'retry_data_indicator.dart';
 
 class RemainderReportList extends StatefulWidget {
   final ReportUiController controller;
@@ -111,7 +112,8 @@ class _RemainderReportListState extends State<RemainderReportList> {
       padding: EdgeInsets.zero,
       pagingController: _pagingController,
       builderDelegate: PagedChildBuilderDelegate<RemainderReport>(
-        itemBuilder: (context, item, index) => _getBranch(item),
+          itemBuilder: (context, item, index) => _getBranch(item),
+          firstPageErrorIndicatorBuilder: (c) => RetryDataIndicator(_pagingController)
       ),
     );
   }

@@ -8,6 +8,8 @@ import 'package:dp_perfum/ui/widgets/vertical_data_label.dart';
 import 'package:flutter/material.dart';
 import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
 
+import 'retry_data_indicator.dart';
+
 class SellingReportList extends StatefulWidget {
 
   final ReportUiController controller;
@@ -120,7 +122,8 @@ class _SellingReportListState extends State<SellingReportList> {
       padding: EdgeInsets.zero,
       pagingController: _pagingController,
       builderDelegate: PagedChildBuilderDelegate<SellingReport>(
-        itemBuilder: (context, item, index) => _getBranch(item),
+          itemBuilder: (context, item, index) => _getBranch(item),
+          firstPageErrorIndicatorBuilder: (c) => RetryDataIndicator(_pagingController)
       ),
     );
   }
