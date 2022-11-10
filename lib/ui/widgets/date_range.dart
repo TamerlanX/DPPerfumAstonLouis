@@ -88,9 +88,9 @@ class _DateRangeState extends State<DateRange> with UiHelper {
         border: Border.all(color: _borderColor),
         boxShadow: [
           BoxShadow(
-            color: Colors.grey.withOpacity(0.5),
-            spreadRadius: 1,
-            blurRadius: 7,
+            color: Colors.grey.withOpacity(0.2),
+            spreadRadius: 2,
+            blurRadius: 5,
             offset: const Offset(0, 0),
           ),
         ],

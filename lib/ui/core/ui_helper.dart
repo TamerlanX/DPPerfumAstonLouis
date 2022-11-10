@@ -72,8 +72,7 @@ class UiHelper
     Get.back();
   }
 
-  Future showSimpleBottomDialog(BuildContext context, String title,
-      Widget? child) async {
+  Future showSimpleBottomDialog(BuildContext context, String title, Widget? child) async {
 
     final lblTitle = Container(
         padding: const EdgeInsets.symmetric(vertical: 5),

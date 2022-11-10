@@ -1,6 +1,7 @@
 import 'package:dp_perfum/models/cash_report_item.dart';
 import 'package:dp_perfum/models/contragent_report.dart';
 import 'package:dp_perfum/models/general/general_report_model.dart';
+import 'package:dp_perfum/models/profit_loss_report.dart';
 import 'package:dp_perfum/models/remainder_report.dart';
 import 'package:dp_perfum/models/selling_report.dart';
 import 'package:dp_perfum/services/base_http_service.dart';
@@ -34,5 +35,11 @@ class ReportService extends BaseHttpService {
     final params = { 'startDate': startDate.toDateString(), 'endDate': endDate.toDateString(), 'page': page.toString() };
     final json = await get('customer_report', params: params);
     return (json as List<dynamic>).map((e) => ContragentReport.fromJson(e)).toList();
+  }
+
+  Future<ProfitLossReport> getProfitLossReport({ required DateTime date }) async {
+    final params = { 'year': date.year.toString(), 'month': date.month.toString() };
+    await Future.delayed(const Duration(milliseconds: 50));
+    return ProfitLossReport.dumb();
   }
 }

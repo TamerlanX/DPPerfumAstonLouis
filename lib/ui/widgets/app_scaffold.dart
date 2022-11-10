@@ -28,7 +28,7 @@ class AppScaffold extends StatelessWidget {
 
   Widget _getTop(BuildContext context) {
     return Container(
-      padding: const EdgeInsets.symmetric(vertical: 15, horizontal: 10),
+      padding: const EdgeInsets.symmetric(vertical: 7, horizontal: 10),
       color: Colors.transparent,
       child: SafeArea(
         bottom: false,

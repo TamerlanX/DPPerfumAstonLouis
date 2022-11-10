@@ -3,6 +3,7 @@ import 'package:dp_perfum/ui/dialogs/confirmation_dialog.dart';
 import 'package:dp_perfum/ui/screens/cash_report_screen.dart';
 import 'package:dp_perfum/ui/screens/contragent_report_screen.dart';
 import 'package:dp_perfum/ui/screens/general_report_screen.dart';
+import 'package:dp_perfum/ui/screens/profit_loss_report_screen.dart';
 import 'package:dp_perfum/ui/screens/remainder_report_screen.dart';
 import 'package:dp_perfum/ui/screens/selling_report_screen.dart';
 import 'package:dp_perfum/ui/screens/splash_screen.dart';
@@ -30,7 +31,7 @@ class MainScreen extends StatelessWidget {
     return AppScaffold(
       title: 'DP Perfum',
       showBack: false,
-      actionButton: IconButton(icon: const Icon(Icons.logout), padding: EdgeInsets.zero, constraints: const BoxConstraints(), color: Colors.white, onPressed: _logout),
+      actionButton: IconButton(icon: const Icon(Icons.logout), color: Colors.white, onPressed: _logout),
       body: GridView.count(
           crossAxisCount: 2,
           children: [
@@ -39,6 +40,7 @@ class MainScreen extends StatelessWidget {
             ReportButton(text: 'Satış hesabatı', icon: Ionicons.arrow_up_outline, onTap: () => Get.to(() => SellingReportScreen())),
             ReportButton(text: 'Kontragent hesabatı', icon: Ionicons.people_outline, onTap: () => Get.to(() => ContragentReportScreen())),
             ReportButton(text: 'Qalıq hesabatı', icon: Ionicons.pie_chart_outline, onTap: () => Get.to(() => RemainderReportScreen())),
+            ReportButton(text: 'Mənfəət/Zərər', icon: Ionicons.trending_up_outline, onTap: () => Get.to(() => ProfitLossReportScreen())),
           ]));
   }
 }
