@@ -2,6 +2,8 @@ import 'package:dp_perfum/models/cash_report_item.dart';
 import 'package:dp_perfum/services/report_service.dart';
 import 'package:dp_perfum/ui/core/ui_values.dart';
 import 'package:dp_perfum/ui/report_ui_controller.dart';
+import 'package:dp_perfum/ui/widgets/app_button.dart';
+import 'package:dp_perfum/ui/widgets/retry_data_indicator.dart';
 import 'package:dp_perfum/ui/widgets/text_with_icon.dart';
 import 'package:flutter/material.dart';
 import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
@@ -111,6 +113,7 @@ class _CashReportListState extends State<CashReportList> {
             ],
           ),
         ),
+        firstPageErrorIndicatorBuilder: (c) => RetryDataIndicator(_pagingController)
       ),
     );
   }
