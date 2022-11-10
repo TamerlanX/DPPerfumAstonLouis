@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 
-class AppDimensions
-{
+class AppDimensions {
   static const double standardPadding = 16;
   static const double smallPadding = 8;
   static const double standardVerticalSpace = 10;
@@ -11,8 +10,7 @@ class AppDimensions
   static const double inputBorderRadius = 50;
 }
 
-class AppFonts
-{
+class AppFonts {
   static const String appFontRegular = 'AppFontRegular';
   static const String appFontBold = 'AppFontBold';
 }

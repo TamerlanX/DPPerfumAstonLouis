@@ -18,7 +18,7 @@ class BaseHttpService {
 
   static Uri getUri(String action, { Map<String, String>? params })
   {
-    var uri = Uri(scheme: 'http', host: '78.111.59.165', port: 8383, path: "d_p/hs/reportserver/api/$action", queryParameters: params);
+    var uri = Uri(scheme: 'http', host: '78.111.59.165', port: 8383, path: "AstonLouis/hs/reportserver/api/$action", queryParameters: params);
     print(uri.toString());
     return uri;
   }

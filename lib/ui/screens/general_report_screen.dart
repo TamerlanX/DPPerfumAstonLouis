@@ -1,5 +1,6 @@
 import 'package:dp_perfum/controllers/general_report_controller.dart';
 import 'package:dp_perfum/ui/widgets/app_scaffold.dart';
+import 'package:dp_perfum/ui/widgets/date_range.dart';
 import 'package:dp_perfum/ui/widgets/empty_box.dart';
 import 'package:dp_perfum/ui/widgets/loading_ring.dart';
 import 'package:dp_perfum/ui/widgets/report_label.dart';
@@ -9,6 +10,9 @@ import 'package:get/get.dart';
 class GeneralReportScreen extends StatelessWidget {
 
   final _controller = GeneralReportController();
+  final _startDate = DateTime.now().add(const Duration(days: -30));
+  final _endDate = DateTime.now().add(const Duration(days: 1));
+
   GeneralReportScreen({Key? key}) : super(key: key);
   
   Widget _getTitle(String title) {
@@ -84,7 +88,7 @@ class GeneralReportScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
 
-    WidgetsBinding.instance.addPostFrameCallback((_) => _controller.getReport());
+    WidgetsBinding.instance.addPostFrameCallback((_) => _controller.getReport(startDate: _startDate, endDate: _endDate));
 
     return AppScaffold(title: 'Ümumi hesabat', body: Obx(() {
 
@@ -92,22 +96,29 @@ class GeneralReportScreen extends StatelessWidget {
 
         if (_controller.report == null) return const EmptyBox();
 
-        return ListView(
+        return Column(
           children: [
-            _getTitle('Pul vəsaitləri haqda hesabat'),
-            _getCash(),
-            const SizedBox(height: 20),
+            DateRange(startDate: _startDate, endDate: _endDate, onDateChange: (dt1, dt2) => _controller.getReport(startDate: dt1!, endDate: dt2!)),
+            Expanded(
+              child: ListView(
+                children: [
+                  _getTitle('Pul vəsaitləri haqda hesabat'),
+                  _getCash(),
+                  const SizedBox(height: 20),
 
-            _getTitle('Müştəri borcları'),
-            _getContragent(),
-            const SizedBox(height: 20),
+                  _getTitle('Müştəri borcları'),
+                  _getContragent(),
+                  const SizedBox(height: 20),
 
-            _getTitle('Satış hesabatı'),
-            _getSelling(),
-            const SizedBox(height: 20),
+                  _getTitle('Satış hesabatı'),
+                  _getSelling(),
+                  const SizedBox(height: 20),
 
-            _getTitle('Qalıq hesabatı'),
-            _getRemainder()
+                  _getTitle('Qalıq hesabatı'),
+                  _getRemainder()
+                ],
+              ),
+            ),
           ],
         );
     }));

@@ -4,7 +4,7 @@
     <uses-permission android:name="android.permission.INTERNET"/>
 
    <application
-        android:label="dp_perfum"
+        android:label="Aston Louis"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
         <activity

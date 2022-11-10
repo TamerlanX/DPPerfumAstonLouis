@@ -29,7 +29,7 @@ class MainScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return AppScaffold(
-      title: 'DP Perfum',
+      title: 'Aston Louis',
       showBack: false,
       actionButton: IconButton(icon: const Icon(Icons.logout), color: Colors.white, onPressed: _logout),
       body: GridView.count(

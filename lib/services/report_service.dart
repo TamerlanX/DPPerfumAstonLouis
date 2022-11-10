@@ -8,8 +8,10 @@ import 'package:dp_perfum/services/base_http_service.dart';
 import 'package:dp_perfum/utils/app_date_utils.dart';
 
 class ReportService extends BaseHttpService {
-  Future<GeneralReportModel> getGeneralReport() async {
-    final json = await get('common_report');
+
+  Future<GeneralReportModel> getGeneralReport({ required DateTime startDate, required DateTime endDate }) async {
+    final params = { 'startDate': startDate.toDateString(), 'endDate': endDate.toDateString() };
+    final json = await get('common_report', params: params);
     return GeneralReportModel.fromJson(json);
   }
 
@@ -39,7 +41,7 @@ class ReportService extends BaseHttpService {
 
   Future<ProfitLossReport> getProfitLossReport({ required DateTime date }) async {
     final params = { 'year': date.year.toString(), 'month': date.month.toString() };
-    await Future.delayed(const Duration(milliseconds: 50));
-    return ProfitLossReport.dumb();
+    final json = await get('proift_loss', params: params);
+    return ProfitLossReport.fromJson(json);
   }
 }

@@ -5,9 +5,9 @@ import 'package:dp_perfum/services/report_service.dart';
 class GeneralReportController extends BaseController {
   GeneralReportModel? report;
 
-  getReport() async {
+  getReport({ required DateTime startDate, required DateTime endDate }) async {
     setProgress();
-    await ReportService().getGeneralReport()
+    await ReportService().getGeneralReport(startDate: startDate, endDate: endDate)
         .then((value) => report = value)
         .whenComplete(() => stopProgress())
         .catchError(showException);
