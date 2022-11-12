@@ -72,6 +72,8 @@ class BaseHttpService {
 
   dynamic _getJson(http.Response response) {
 
+    print(response.body);
+
     if (response.statusCode < 200 || response.statusCode > 299) {
       if (!StringUtils.isEmpty(response.body)) {
         var json = convert.jsonDecode(convert.utf8.decode(response.bodyBytes));

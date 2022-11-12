@@ -10,34 +10,34 @@ import 'package:get/get.dart';
 class GeneralReportScreen extends StatelessWidget {
 
   final _controller = GeneralReportController();
-  final _startDate = DateTime.now().add(const Duration(days: -30));
-  final _endDate = DateTime.now().add(const Duration(days: 1));
+  final _startDate = DateTime.now();
+  final _endDate = DateTime.now();
 
   GeneralReportScreen({Key? key}) : super(key: key);
-  
+
   Widget _getTitle(String title) {
     return Padding(
       padding: const EdgeInsets.only(left: 10),
       child: Text(title, style: const TextStyle(
-        color: Colors.black,
-        fontWeight: FontWeight.bold,
-        fontSize: 20
+          color: Colors.black,
+          fontWeight: FontWeight.bold,
+          fontSize: 20
       )),
     );
   }
 
   Widget _getCash() {
     return Column(
-      crossAxisAlignment: CrossAxisAlignment.stretch,
-      mainAxisSize: MainAxisSize.min,
-      children: _controller.report!.cashReport.items.map((e) => ReportLabel(
-          title: e.itemName,
-          values: {
-            'İlkin qalıq': e.initialAmount.toStringAsFixed(2),
-            'Mədaxil': e.income.toStringAsFixed(2),
-            'Məxaric': e.expense.toStringAsFixed(2),
-            'Son qalıq': e.finalAmount.toStringAsFixed(2)
-          })).toList()
+        crossAxisAlignment: CrossAxisAlignment.stretch,
+        mainAxisSize: MainAxisSize.min,
+        children: _controller.report!.cashReport.items.map((e) => ReportLabel(
+            title: e.itemName,
+            values: {
+              'İlkin qalıq': e.initialAmount.toStringAsFixed(2),
+              'Mədaxil': e.income.toStringAsFixed(2),
+              'Məxaric': e.expense.toStringAsFixed(2),
+              'Son qalıq': e.finalAmount.toStringAsFixed(2)
+            })).toList()
     );
   }
 
@@ -90,37 +90,37 @@ class GeneralReportScreen extends StatelessWidget {
 
     WidgetsBinding.instance.addPostFrameCallback((_) => _controller.getReport(startDate: _startDate, endDate: _endDate));
 
-    return AppScaffold(title: 'Ümumi hesabat', body: Obx(() {
+    return AppScaffold(title: 'Ümumi hesabat', body: Column(
+      children: [
+        DateRange(startDate: _startDate, endDate: _endDate, onDateChange: (dt1, dt2) => _controller.getReport(startDate: dt1!, endDate: dt2!)),
+        Expanded(
+          child: Obx(() {
 
-        if (_controller.inProgress.value) return const LoadingRing();
+            if (_controller.inProgress.value) return const LoadingRing();
 
-        if (_controller.report == null) return const EmptyBox();
+            if (_controller.report == null) return const EmptyBox();
 
-        return Column(
-          children: [
-            DateRange(startDate: _startDate, endDate: _endDate, onDateChange: (dt1, dt2) => _controller.getReport(startDate: dt1!, endDate: dt2!)),
-            Expanded(
-              child: ListView(
-                children: [
-                  _getTitle('Pul vəsaitləri haqda hesabat'),
-                  _getCash(),
-                  const SizedBox(height: 20),
+            return ListView(
+              children: [
+                _getTitle('Pul vəsaitləri haqda hesabat'),
+                _getCash(),
+                const SizedBox(height: 20),
 
-                  _getTitle('Müştəri borcları'),
-                  _getContragent(),
-                  const SizedBox(height: 20),
+                _getTitle('Müştəri borcları'),
+                _getContragent(),
+                const SizedBox(height: 20),
 
-                  _getTitle('Satış hesabatı'),
-                  _getSelling(),
-                  const SizedBox(height: 20),
+                _getTitle('Satış hesabatı'),
+                _getSelling(),
+                const SizedBox(height: 20),
 
-                  _getTitle('Qalıq hesabatı'),
-                  _getRemainder()
-                ],
-              ),
-            ),
-          ],
-        );
-    }));
+                _getTitle('Qalıq hesabatı'),
+                _getRemainder()
+              ],
+            );
+          }),
+        ),
+      ],
+    ));
   }
 }
